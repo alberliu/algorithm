@@ -5,8 +5,9 @@ import (
 	"testing"
 )
 
-func TestQuikSort(t *testing.T) {
+func TestQuickSort(t *testing.T) {
 	slice := []int{5, 4, 7, 2, 6, 3, 6, 9, 19}
+	//slice := []int{4, 5, 2, 6, 3}
 
 	QuickSort(slice)
 	fmt.Println(slice)
@@ -18,20 +19,18 @@ func QuickSort(slice []int) {
 		return
 	}
 	index := partition(slice)
-	QuickSort(slice[:index+1])
+	QuickSort(slice[:index])
 	QuickSort(slice[index+1:])
 
 }
 
 func partition(slice []int) int {
-	//fmt.Println(slice)
 	index := 0
 	for i := 0; i < len(slice)-1; i++ {
 		if slice[i] > slice[i+1] {
 			slice[i], slice[i+1] = slice[i+1], slice[i]
-			index = i
+			index = i + 1
 		}
 	}
-
 	return index
 }
