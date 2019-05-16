@@ -24,6 +24,7 @@ type Node struct {
 	RightMaxDepth int   // 右子树最大深度
 }
 
+// InitBTree 初始化二叉树
 func InitBTree() *Node {
 	root := Node{
 		Data: 1,
@@ -49,6 +50,7 @@ func InitBTree() *Node {
 	return &root
 }
 
+// PrintBTree 前序遍历二叉树
 func PrintBTree(root *Node) {
 	if root != nil {
 		fmt.Println(root.Data)
@@ -57,7 +59,7 @@ func PrintBTree(root *Node) {
 	}
 }
 
-// GetBTreeDepth
+// GetBTreeDepth 获取二叉树的深度
 func GetBTreeDepth(node *Node) int {
 	if node == nil {
 		return 0

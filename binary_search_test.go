@@ -10,6 +10,7 @@ func TestBinarySearch(t *testing.T) {
 	fmt.Println(BinarySearch(slice, 3))
 }
 
+// BinarySearch 二分查找
 func BinarySearch(slice []int, value int) int {
 	var (
 		start = 0
