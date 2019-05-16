@@ -16,30 +16,30 @@ func TestTree(t *testing.T) {
 	fmt.Println(maxDistance)
 }
 
-type Node struct {
-	Data          int   // 数据
-	Left          *Node // 左子树
-	LeftMaxDepth  int   // 左子树最大深度
-	Right         *Node // 右子树
-	RightMaxDepth int   // 右子树最大深度
+type BTreeNode struct {
+	Data          int        // 数据
+	Left          *BTreeNode // 左子树
+	LeftMaxDepth  int        // 左子树最大深度
+	Right         *BTreeNode // 右子树
+	RightMaxDepth int        // 右子树最大深度
 }
 
 // InitBTree 初始化二叉树
-func InitBTree() *Node {
-	root := Node{
+func InitBTree() *BTreeNode {
+	root := BTreeNode{
 		Data: 1,
-		Left: &Node{
+		Left: &BTreeNode{
 			Data: 2,
-			Left: &Node{
+			Left: &BTreeNode{
 				Data:  4,
 				Left:  nil,
 				Right: nil,
 			},
 			Right: nil,
 		},
-		Right: &Node{
+		Right: &BTreeNode{
 			Data: 3,
-			Left: &Node{
+			Left: &BTreeNode{
 				Data:  5,
 				Left:  nil,
 				Right: nil,
@@ -51,7 +51,7 @@ func InitBTree() *Node {
 }
 
 // PrintBTree 前序遍历二叉树
-func PrintBTree(root *Node) {
+func PrintBTree(root *BTreeNode) {
 	if root != nil {
 		fmt.Println(root.Data)
 		PrintBTree(root.Left)
@@ -60,7 +60,7 @@ func PrintBTree(root *Node) {
 }
 
 // GetBTreeDepth 获取二叉树的深度
-func GetBTreeDepth(node *Node) int {
+func GetBTreeDepth(node *BTreeNode) int {
 	if node == nil {
 		return 0
 	}
@@ -77,7 +77,7 @@ func GetBTreeDepth(node *Node) int {
 // GetBTreeMaxDistance 获取两个节点的最大距离
 var maxDistance = 0
 
-func GetBTreeMaxDistance(node *Node) int {
+func GetBTreeMaxDistance(node *BTreeNode) int {
 	if node == nil {
 		return 0
 	}
