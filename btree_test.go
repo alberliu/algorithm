@@ -21,11 +21,9 @@ func TestTree(t *testing.T) {
 }
 
 type Node struct {
-	Data          int   // 数据
-	Left          *Node // 左子树
-	LeftMaxDepth  int   // 左子树最大深度
-	Right         *Node // 右子树
-	RightMaxDepth int   // 右子树最大深度
+	Data  int   // 数据
+	Left  *Node // 左子树
+	Right *Node // 右子树
 }
 
 func InitBTree() *Node {
