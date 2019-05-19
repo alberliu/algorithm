@@ -14,6 +14,10 @@ func TestTree(t *testing.T) {
 	fmt.Println("两点之间最大距离：")
 	GetBTreeMaxDistance(root)
 	fmt.Println(maxDistance)
+	fmt.Println("按层遍历二叉树")
+	PrintBTreeByLayer(root)
+	fmt.Println("打印所有路径")
+	PrintAllPath(root)
 }
 
 type Node struct {
@@ -58,12 +62,12 @@ func PrintBTree(root *Node) {
 }
 
 // GetBTreeDepth
-func GetBTreeDepth(node *Node) int {
-	if node == nil {
+func GetBTreeDepth(root *Node) int {
+	if root == nil {
 		return 0
 	}
-	leftDepth := GetBTreeDepth(node.Left)
-	rightDepth := GetBTreeDepth(node.Right)
+	leftDepth := GetBTreeDepth(root.Left)
+	rightDepth := GetBTreeDepth(root.Right)
 
 	if leftDepth >= rightDepth {
 		return leftDepth + 1
@@ -75,12 +79,12 @@ func GetBTreeDepth(node *Node) int {
 // GetBTreeMaxDistance 获取两个节点的最大距离
 var maxDistance = 0
 
-func GetBTreeMaxDistance(node *Node) int {
-	if node == nil {
+func GetBTreeMaxDistance(root *Node) int {
+	if root == nil {
 		return 0
 	}
-	leftDepth := GetBTreeDepth(node.Left)
-	rightDepth := GetBTreeDepth(node.Right)
+	leftDepth := GetBTreeDepth(root.Left)
+	rightDepth := GetBTreeDepth(root.Right)
 
 	if leftDepth+rightDepth > maxDistance {
 		maxDistance = leftDepth + rightDepth
@@ -90,5 +94,49 @@ func GetBTreeMaxDistance(node *Node) int {
 		return leftDepth + 1
 	} else {
 		return rightDepth + 1
+	}
+}
+
+// PrintBTreeByLayer 按层打印二叉树
+func PrintBTreeByLayer(root *Node) {
+	if root == nil {
+		return
+	}
+	nodes := make([]*Node, 0, 10)
+	nodes = append(nodes, root)
+	index := 0
+	for index < len(nodes) {
+		fmt.Println(nodes[index].Data)
+		if nodes[index].Left != nil {
+			nodes = append(nodes, nodes[index].Left)
+		}
+		if nodes[index].Right != nil {
+			nodes = append(nodes, nodes[index].Right)
+		}
+		index++
+	}
+
+}
+
+var (
+	nodes = make([]*Node, 10)
+	end   = 0
+)
+
+// PrintAllPath 打印二叉树根结点到所有叶子节点的路径
+func PrintAllPath(root *Node) {
+	if root != nil {
+		nodes[end] = root
+		end++
+		if root.Left == nil && root.Right == nil {
+			for i := 0; i < end; i++ {
+				fmt.Print(nodes[i].Data, "  ")
+			}
+			fmt.Println()
+		}
+
+		PrintAllPath(root.Left)
+		PrintAllPath(root.Right)
+		end--
 	}
 }
